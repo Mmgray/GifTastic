@@ -1,5 +1,5 @@
 //Array of musicians
-var topics = ["Beyonce", "Kanye","Rihanna", "Drake", "SZA", "Jay-Z", "Cardi B", "Taylor Swift"];
+var topics = ["Beyonce", "Kanye","Rihanna", "Drake", "Jay-Z", "Cardi B", "Taylor Swift"];
 
 function displayGifs(){
     var gif = $(this).attr("data-name");
@@ -20,7 +20,7 @@ function displayGifs(){
       var gifDiv = $("<div class ='gifs'>");
 
 
-      var displayRating = $("<p>").text("Rating: " +results[i].rating);
+      var displayRating = $("<p>").text("Rating: " + results[i].rating);
 
     
     gifDiv.append(displayRating);
@@ -28,14 +28,10 @@ function displayGifs(){
 
     gifImage.attr("src", results[i].images.fixed_height_still.url); 
 
-    
-
     gifDiv.append(gifImage); 
-    //   gifImage.attr("src", results[i].images.fixed_height_still.url);
-
+    
     $("#gifs-view").prepend(gifDiv);
 
-    //animate: fixed_height_downsampled
         }  
     });
 }
@@ -45,14 +41,13 @@ function renderButtons() {
     for (var i=0; i < topics.length; i++) {
         var add = $("<button>");
         add.addClass("gif-btn");
-        add.addClass("data-name", topics[i]);
+        add.attr("data-name", topics[i]);
         add.text(topics[i]);
         $("#buttons-view").append(add);
     }
-
 }
 
-$("add-gif").on("click", function(event){
+$("#add-gif").on("click", function(event){
     event.preventDefault();
     var gif = $("#gif-input").val().trim();
     topics.push(gif);
@@ -63,3 +58,6 @@ $(document).on("click", ".gif-btn", displayGifs);
 
 renderButtons();
 
+$(".gifs").on("click", function(){
+    gifImage.attr("src", results[i].images.fixed_height_downsampled.url);
+});
